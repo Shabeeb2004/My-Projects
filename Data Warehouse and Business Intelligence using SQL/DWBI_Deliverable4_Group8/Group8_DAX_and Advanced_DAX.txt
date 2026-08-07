@@ -1,0 +1,22 @@
+fact_bookings (Core Metrics)
+Total Bookings = COUNT(fact_bookings[Booking Key])
+Total Revenue = SUM(fact_bookings[Total Revenue])
+Total Nights = SUM(fact_bookings[Nights])
+Average Daily Rate = AVERAGE(fact_bookings[Price Per Night])
+Revenue Per Booking = DIVIDE([Total Revenue], [Total Bookings], 0)
+Superhost Revenue = CALCULATE([Total Revenue], dim_host[Is Superhost] = TRUE())
+
+
+dim_date (Time Intelligence)
+Revenue YTD = TOTALYTD([Total Revenue], dim_date[Full Date])
+Revenue Previous Year = CALCULATE([Total Revenue], SAMEPERIODLASTYEAR(dim_date[Full Date]))
+Revenue Growth YoY = DIVIDE([Total Revenue] - [Revenue Previous Year], [Revenue Previous Year], 0)
+
+
+dim_property (Property Analytics)
+Revenue Per Available Room (RevPAR) = DIVIDE([Total Revenue], COUNTROWS(dim_property), 0)
+Average Stay Length = DIVIDE([Total Nights], [Total Bookings], 0)
+
+
+dim_host (Host Performance)
+Superhost Revenue % = DIVIDE([Superhost Revenue], [Total Revenue], 0)
