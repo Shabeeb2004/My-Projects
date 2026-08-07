@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PSL 2026 — Fix Missed Predictions</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0e0a; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 24px; }
+  h1 { color: #00e676; font-size: 22px; margin-bottom: 6px; }
+  .sub { color: #888; font-size: 13px; margin-bottom: 24px; }
+  .card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+  .card h2 { font-size: 15px; color: #ffc400; margin-bottom: 12px; }
+  .btn { background: #00e676; color: #000; border: none; padding: 10px 22px; border-radius: 5px; cursor: pointer; font-weight: 700; font-size: 14px; }
+  .btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+  .btn-red { background: #ff1744; color: #fff; }
+  .btn-yellow { background: #ffc400; color: #000; }
+  .log { background: #0d1a0d; border: 1px solid #1a3a1a; border-radius: 6px; padding: 14px; font-family: monospace; font-size: 12px; line-height: 1.8; max-height: 500px; overflow-y: auto; margin-top: 12px; }
+  .log .ok   { color: #00e676; }
+  .log .warn { color: #ffc400; }
+  .log .err  { color: #ff1744; }
+  .log .dim  { color: #555; }
+  .log .bold { color: #fff; font-weight: bold; }
+  .stat-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat { background: #0d1a0d; border: 1px solid #1a3a1a; border-radius: 6px; padding: 12px 18px; text-align: center; }
+  .stat__val { font-size: 28px; font-weight: 700; color: #00e676; }
+  .stat__val.warn { color: #ffc400; }
+  .stat__val.err  { color: #ff1744; }
+  .stat__label { font-size: 11px; color: #666; margin-top: 2px; letter-spacing: 1px; text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #161616; color: #666; padding: 8px 12px; text-align: left; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid #222; }
+  td { padding: 9px 12px; border-bottom: 1px solid #1a1a1a; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 3px; font-size: 11px; font-weight: 700; }
+  .tag-missed  { background: rgba(255,196,0,.15); color: #ffc400; border: 1px solid rgba(255,196,0,.3); }
+  .tag-flagged { background: rgba(0,230,118,.1);  color: #00e676; border: 1px solid rgba(0,230,118,.3); }
+  .tag-normal  { background: rgba(80,80,80,.2);   color: #888;    border: 1px solid #333; }
+  #apply-btn { margin-top: 16px; }
+  .step { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
+  .step:last-child { border-bottom: none; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: #ffc400; color: #000; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-num.done { background: #00e676; }
+  .step-num.err  { background: #ff1744; color: #fff; }
+</style>
+</head>
+<body>
+
+<h1>🔧 Fix Missed Predictions — One-Time Tool</h1>
+<p class="sub">This tool reads your Firebase database, identifies predictions that were made after match lock time, and marks them as <code>missed:true</code> so they don't score points. Place this file in the same folder as your other PSL files and open it in your browser.</p>
+
+<div class="card">
+  <h2>Steps</h2>
+  <div class="step"><span class="step-num" id="s1">1</span><span>Click <strong>Scan Database</strong> to fetch all users and analyse their predictions.</span></div>
+  <div class="step"><span class="step-num" id="s2">2</span><span>Review the findings below — every prediction that will be flagged is shown.</span></div>
+  <div class="step"><span class="step-num" id="s3">3</span><span>Click <strong>Apply Fix</strong> to write the <code>missed:true</code> flags to Firebase. Leaderboard will update automatically.</span></div>
+  <br/>
+  <button class="btn" id="scan-btn" onclick="runScan()">🔍 Scan Database</button>
+</div>
+
+<div id="results" style="display:none">
+  <div class="card">
+    <h2>📊 Scan Results</h2>
+    <div class="stat-row" id="stats-row"></div>
+    <div id="findings-table"></div>
+    <button class="btn btn-yellow" id="apply-btn" onclick="applyFix()" disabled>⚡ Apply Fix — Flag Missed Predictions</button>
+    <div class="log" id="apply-log" style="display:none"></div>
+  </div>
+</div>
+
+<div class="log" id="scan-log"></div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script>
+// ── Firebase config (copied from data.js) ──────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyCsoxbY1Zh24t7W-pxTyMmW_dB62YIxkxk",
+  authDomain: "psl-predictor-2026.firebaseapp.com",
+  databaseURL: "https://psl-predictor-2026-default-rtdb.firebaseio.com",
+  projectId: "psl-predictor-2026",
+  storageBucket: "psl-predictor-2026.firebasestorage.app",
+  messagingSenderId: "815301031018",
+  appId: "1:815301031018:web:78fb5568f34892bdd6c613"
+};
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// ── Match lock times (PKT = UTC+5) ────────────────────────────────
+// Each match locks at its scheduled start time.
+// Times stored as UTC milliseconds.
+const MATCH_LOCK = {
+   1: Date.UTC(2026,2,26,14, 0), // Mar 26  7:00 PM PKT
+   2: Date.UTC(2026,2,27,14, 0), // Mar 27  7:00 PM PKT
+   3: Date.UTC(2026,2,28, 9,30), // Mar 28  2:30 PM PKT
+   4: Date.UTC(2026,2,28,14, 0), // Mar 28  7:00 PM PKT
+   5: Date.UTC(2026,2,29, 9,30), // Mar 29  2:30 PM PKT
+   6: Date.UTC(2026,2,29,14, 0), // Mar 29  7:00 PM PKT
+   7: Date.UTC(2026,2,31,14, 0), // Mar 31  7:00 PM PKT
+   8: Date.UTC(2026,3, 1,14, 0), // Apr  1  7:00 PM PKT
+   9: Date.UTC(2026,3, 2, 9,30), // Apr  2  2:30 PM PKT
+  10: Date.UTC(2026,3, 2,14, 0), // Apr  2  7:00 PM PKT
+  11: Date.UTC(2026,3, 3,14, 0), // Apr  3  7:00 PM PKT
+  12: Date.UTC(2026,3, 4,14, 0), // Apr  4  7:00 PM PKT
+  13: Date.UTC(2026,3, 5,14, 0), // Apr  5  7:00 PM PKT
+  14: Date.UTC(2026,3, 6,14, 0), // Apr  6  7:00 PM PKT
+  15: Date.UTC(2026,3, 8,14, 0), // Apr  8  7:00 PM PKT
+  16: Date.UTC(2026,3, 9, 9,30), // Apr  9  2:30 PM PKT
+  17: Date.UTC(2026,3, 9,14, 0), // Apr  9  7:00 PM PKT
+  18: Date.UTC(2026,3,10,14, 0), // Apr 10  7:00 PM PKT
+  19: Date.UTC(2026,3,11, 9,30), // Apr 11  2:30 PM PKT
+  20: Date.UTC(2026,3,11,14, 0), // Apr 11  7:00 PM PKT
+  21: Date.UTC(2026,3,12,14, 0), // Apr 12  7:00 PM PKT
+  22: Date.UTC(2026,3,13,14, 0), // Apr 13  7:00 PM PKT
+  23: Date.UTC(2026,3,15,14, 0), // Apr 15  7:00 PM PKT
+  24: Date.UTC(2026,3,16, 9,30), // Apr 16  2:30 PM PKT
+  25: Date.UTC(2026,3,16,14, 0), // Apr 16  7:00 PM PKT
+  26: Date.UTC(2026,3,17,14, 0), // Apr 17  7:00 PM PKT
+  27: Date.UTC(2026,3,18,14, 0), // Apr 18  7:00 PM PKT
+  28: Date.UTC(2026,3,19, 9,30), // Apr 19  2:30 PM PKT
+  29: Date.UTC(2026,3,19,14, 0), // Apr 19  7:00 PM PKT
+  30: Date.UTC(2026,3,21, 9,30), // Apr 21  2:30 PM PKT
+  31: Date.UTC(2026,3,21,14, 0), // Apr 21  7:00 PM PKT
+  32: Date.UTC(2026,3,22, 9,30), // Apr 22  2:30 PM PKT
+  33: Date.UTC(2026,3,22,14, 0), // Apr 22  7:00 PM PKT
+  34: Date.UTC(2026,3,23, 9,30), // Apr 23  2:30 PM PKT
+  35: Date.UTC(2026,3,23,14, 0), // Apr 23  7:00 PM PKT
+  36: Date.UTC(2026,3,24,14, 0), // Apr 24  7:00 PM PKT
+  37: Date.UTC(2026,3,25, 9,30), // Apr 25  2:30 PM PKT
+  38: Date.UTC(2026,3,25,14, 0), // Apr 25  7:00 PM PKT
+  39: Date.UTC(2026,3,26, 9,30), // Apr 26  2:30 PM PKT
+  40: Date.UTC(2026,3,26,14, 0), // Apr 26  7:00 PM PKT
+};
+
+// ── Logging helpers ───────────────────────────────────────────────
+const scanLog  = document.getElementById('scan-log');
+const applyLog = document.getElementById('apply-log');
+function log(el, msg, cls='') {
+  const line = document.createElement('div');
+  if (cls) line.className = cls;
+  line.innerHTML = msg;
+  el.appendChild(line);
+  el.scrollTop = el.scrollHeight;
+}
+
+// ── Global state ─────────────────────────────────────────────────
+let toFix = []; // [{username, matchId, winner}] — predictions to flag as missed
+
+// ── SCAN ─────────────────────────────────────────────────────────
+async function runScan() {
+  document.getElementById('scan-btn').disabled = true;
+  document.getElementById('scan-btn').textContent = '⏳ Scanning…';
+  scanLog.style.display = 'block';
+  toFix = [];
+
+  log(scanLog, '<span class="bold">Fetching all users from Firebase…</span>');
+
+  let users;
+  try {
+    const snap = await db.ref('users').get();
+    users = snap.exists() ? snap.val() : null;
+  } catch(e) {
+    log(scanLog, `<span class="err">❌ Firebase error: ${e.message}</span>`);
+    document.getElementById('scan-btn').disabled = false;
+    document.getElementById('scan-btn').textContent = '🔍 Scan Database';
+    return;
+  }
+
+  if (!users) {
+    log(scanLog, '<span class="err">No users found in Firebase.</span>');
+    return;
+  }
+
+  const userList = Object.entries(users);
+  log(scanLog, `<span class="ok">✅ Fetched ${userList.length} users.</span>`);
+  log(scanLog, '');
+  log(scanLog, '<span class="bold">Analysing predictions vs match lock times…</span>');
+  log(scanLog, '<span class="dim">Logic: if a user joined AFTER a match was already locked, any plain-string prediction for that match was made retroactively and must be flagged as missed. Also catches predictions already flagged.</span>');
+  log(scanLog, '');
+
+  const now = Date.now();
+  let totalMissed = 0;
+  let totalAlreadyFlagged = 0;
+  let usersAffected = 0;
+  const tableRows = [];
+
+  userList.forEach(([username, userData]) => {
+    const preds   = userData.predictions || {};
+    const joinedAt = userData.joinedAt || 0; // timestamp when user registered
+
+    const userMissed   = [];
+    const userFlagged  = [];
+    const userNormal   = [];
+
+    for (let matchId = 1; matchId <= 40; matchId++) {
+      const lockTime = MATCH_LOCK[matchId];
+      if (!lockTime) continue;
+      const pred = preds[matchId];
+      if (!pred) continue; // no prediction for this match
+
+      // Already flagged as missed in a previous fix run
+      if (typeof pred === 'object' && pred.missed) {
+        userFlagged.push({ matchId, winner: pred.v });
+        totalAlreadyFlagged++;
+        continue;
+      }
+
+      // Plain string prediction
+      if (typeof pred === 'string') {
+        // The key detection: user joined AFTER the match lock time.
+        // If joinedAt > lockTime, they physically could not have predicted this match
+        // before it started — so it must have been entered retroactively.
+        if (joinedAt > lockTime) {
+          userMissed.push({ matchId, winner: pred, joinedAt, lockTime });
+          toFix.push({ username, matchId, winner: pred });
+          totalMissed++;
+        } else {
+          userNormal.push(matchId);
+        }
+      }
+    }
+
+    if (userMissed.length > 0 || userFlagged.length > 0) {
+      usersAffected++;
+      tableRows.push({ username, joinedAt, userMissed, userFlagged, userNormal });
+      
+      log(scanLog, `<span class="warn">⚠ ${username}</span> — joined ${new Date(joinedAt).toLocaleString('en-PK', {timeZone:'Asia/Karachi'})}`);
+      if (userMissed.length > 0) {
+        log(scanLog, `  <span class="err">Will flag as missed (${userMissed.length}):</span> ${userMissed.map(x=>`M${x.matchId}=${x.winner}`).join(', ')}`);
+      }
+      if (userFlagged.length > 0) {
+        log(scanLog, `  <span class="ok">Already flagged (${userFlagged.length}):</span> ${userFlagged.map(x=>`M${x.matchId}=${x.winner}`).join(', ')}`);
+      }
+    } else {
+      log(scanLog, `<span class="dim">✓ ${username} — all ${userNormal.length} predictions look normal</span>`);
+    }
+  });
+
+  log(scanLog, '');
+  log(scanLog, `<span class="bold">Scan complete.</span>`);
+
+  // Render stats
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat"><div class="stat__val">${userList.length}</div><div class="stat__label">Total Users</div></div>
+    <div class="stat"><div class="stat__val warn">${usersAffected}</div><div class="stat__label">Users Affected</div></div>
+    <div class="stat"><div class="stat__val err">${totalMissed}</div><div class="stat__label">To Fix Now</div></div>
+    <div class="stat"><div class="stat__val">${totalAlreadyFlagged}</div><div class="stat__label">Already Fixed</div></div>
+  `;
+
+  // Render findings table
+  let html = '';
+  if (tableRows.length === 0) {
+    html = '<p style="color:#00e676;padding:12px 0;">✅ No issues found — all predictions look legitimate!</p>';
+  } else {
+    html = `<table>
+      <thead><tr>
+        <th>User</th><th>Joined (PKT)</th><th>To Flag as Missed</th><th>Already Flagged</th><th>Normal Picks</th>
+      </tr></thead><tbody>`;
+    tableRows.forEach(r => {
+      const joinStr = new Date(r.joinedAt).toLocaleString('en-PK', {timeZone:'Asia/Karachi',dateStyle:'medium',timeStyle:'short'});
+      html += `<tr>
+        <td><strong>${r.username}</strong></td>
+        <td style="font-size:12px;color:#888;">${joinStr}</td>
+        <td>${r.userMissed.map(x=>`<span class="tag tag-missed">M${x.matchId} ${x.winner}</span>`).join(' ') || '<span style="color:#555">—</span>'}</td>
+        <td>${r.userFlagged.map(x=>`<span class="tag tag-flagged">M${x.matchId} ${x.winner}</span>`).join(' ') || '<span style="color:#555">—</span>'}</td>
+        <td style="color:#555;font-size:12px;">${r.userNormal.length > 0 ? r.userNormal.map(id=>`M${id}`).join(', ') : '—'}</td>
+      </tr>`;
+    });
+    html += '</tbody></table>';
+  }
+  document.getElementById('findings-table').innerHTML = html;
+
+  document.getElementById('results').style.display = 'block';
+
+  if (toFix.length > 0) {
+    document.getElementById('apply-btn').disabled = false;
+    document.getElementById('apply-btn').textContent = `⚡ Apply Fix — Flag ${toFix.length} Missed Prediction${toFix.length===1?'':'s'}`;
+    document.getElementById('s2').className = 'step-num done';
+  } else {
+    document.getElementById('apply-btn').textContent = '✅ Nothing to fix';
+    document.getElementById('s2').className = 'step-num done';
+    document.getElementById('s3').className = 'step-num done';
+  }
+
+  document.getElementById('scan-btn').textContent = '🔍 Re-Scan';
+  document.getElementById('scan-btn').disabled = false;
+  document.getElementById('s1').className = 'step-num done';
+}
+
+// ── APPLY FIX ────────────────────────────────────────────────────
+async function applyFix() {
+  if (toFix.length === 0) return;
+
+  document.getElementById('apply-btn').disabled = true;
+  document.getElementById('apply-btn').textContent = '⏳ Applying…';
+  document.getElementById('apply-log').style.display = 'block';
+
+  log(applyLog, `<span class="bold">Writing ${toFix.length} fixes to Firebase…</span>`);
+  log(applyLog, '<span class="dim">Each missed prediction will be stored as { v: "TEAM", missed: true } — the scoring engine skips these, but standings still use them.</span>');
+  log(applyLog, '');
+
+  let successCount = 0;
+  let failCount = 0;
+
+  for (const { username, matchId, winner } of toFix) {
+    const path = `users/${username}/predictions/${matchId}`;
+    const value = { v: winner, missed: true };
+    try {
+      await db.ref(path).set(value);
+      log(applyLog, `<span class="ok">✅ ${username} M${matchId}: "${winner}" → { v:"${winner}", missed:true }</span>`);
+      successCount++;
+    } catch(e) {
+      log(applyLog, `<span class="err">❌ ${username} M${matchId}: FAILED — ${e.message}</span>`);
+      failCount++;
+    }
+  }
+
+  log(applyLog, '');
+  if (failCount === 0) {
+    log(applyLog, `<span class="ok bold">✅ All ${successCount} predictions fixed successfully!</span>`);
+    log(applyLog, '<span class="ok">The leaderboard will now exclude these picks from scoring. Standings and playoff brackets are unaffected.</span>');
+    document.getElementById('apply-btn').textContent = '✅ Fix Applied Successfully';
+    document.getElementById('s3').className = 'step-num done';
+  } else {
+    log(applyLog, `<span class="warn">⚠ ${successCount} fixed, ${failCount} failed. Re-run the scan and try again for failed ones.</span>`);
+    document.getElementById('apply-btn').textContent = `⚠ ${failCount} Failed — Re-scan to retry`;
+    document.getElementById('apply-btn').disabled = false;
+    document.getElementById('s3').className = 'step-num err';
+  }
+}
+</script>
+</body>
+</html>

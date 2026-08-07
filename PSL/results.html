@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/png" href="data:image/png;base64,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"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PSL 2026 — Results & Standings</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  .results-hero {
+    padding: 36px 24px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative; z-index:1; overflow:hidden;
+  }
+  .results-hero::after {
+    content:'RESULTS';
+    position:absolute;right:-8px;top:-8px;
+    font-family:var(--font-head);font-size:100px;line-height:1;
+    color:rgba(0,230,118,.03);pointer-events:none;
+  }
+  .results-hero__eye  { font-family:var(--font-cond);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:6px; }
+  .results-hero__title{ font-family:var(--font-head);font-size:clamp(34px,5vw,60px);letter-spacing:3px;line-height:1; }
+  .results-hero__title span { color:var(--gold); }
+  .results-hero__sub  { color:var(--text-dim);font-size:14px;margin-top:6px; }
+
+  .results-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 24px;
+    position: relative; z-index:1;
+  }
+
+  /* ─── Standings table ─── */
+  .standings-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .standings-card__head {
+    background: var(--surface2);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .standings-card__title {
+    font-family: var(--font-head);
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+  .group-a-title { color: var(--green); }
+  .group-b-title { color: var(--gold); }
+
+  .st-table { width:100%; border-collapse:collapse; }
+  .st-table th {
+    font-family:var(--font-cond);font-size:11px;font-weight:700;
+    letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);
+    padding:9px 12px;border-bottom:2px solid var(--border2);
+    background:var(--surface2);text-align:center;
+  }
+  .st-table th:nth-child(2) { text-align:left; }
+  .st-table td {
+    padding:11px 12px;border-bottom:1px solid var(--border);
+    font-size:13px;text-align:center;
+    font-family:var(--font-cond);font-weight:600;
+    vertical-align:middle;
+  }
+  .st-table td:nth-child(2) { text-align:left; }
+  .st-table tr:last-child td { border-bottom:none; }
+  .st-table tr:hover td { background:rgba(0,230,118,.03); }
+  .st-table .q-row td { background:rgba(0,230,118,.04); }
+  .st-table .q-row td:first-child { color:var(--green);font-weight:700; }
+  .st-row-team {
+    display:flex;align-items:center;gap:8px;
+  }
+  .st-dot { width:8px;height:8px;border-radius:50%;flex-shrink:0; }
+  .nrr-pos { color:var(--green); }
+  .nrr-neg { color:var(--red); }
+  .pts-cell { font-family:var(--font-head);font-size:18px; }
+  .pts-cell.top { color:var(--green); }
+
+  /* ─── Results list ─── */
+  .results-section {
+    grid-column: 1 / -1;
+  }
+  .results-section-head {
+    font-family: var(--font-head);
+    font-size: 26px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .match-result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    transition: border-color .2s;
+  }
+  .match-result-card.has-result { border-color: rgba(0,230,118,.3); }
+  .match-result-card__header {
+    background: var(--surface2);
+    padding: 8px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .match-result-card__meta {
+    font-family: var(--font-cond);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .match-result-card__status {
+    font-family: var(--font-cond);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1px; padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .status-completed { background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.25); }
+  .status-live      { background:rgba(255,23,68,.1);color:var(--red);border:1px solid rgba(255,23,68,.3);animation:blink 1s infinite; }
+  .status-upcoming  { background:rgba(255,196,0,.08);color:var(--gold);border:1px solid rgba(255,196,0,.2); }
+  .status-nr        { background:rgba(120,120,180,.12);color:#9090d0;border:1px solid rgba(120,120,180,.3); }
+
+  .match-result-card__body {
+    display: flex; align-items: center; padding: 14px 16px; gap: 12px;
+  }
+  .res-team {
+    flex: 1; display: flex; align-items: center; gap: 10px;
+  }
+  .res-team--right { flex-direction: row-reverse; }
+  .res-team__name {
+    font-family: var(--font-cond);
+    font-size: 16px; font-weight: 700;
+  }
+  .res-team__score {
+    font-family: var(--font-head);
+    font-size: 22px;
+  }
+  .res-team.winner .res-team__name { color: var(--green); }
+  .res-team.loser  { opacity: .55; }
+  .res-vs {
+    font-family: var(--font-head);
+    font-size: 16px; color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .match-result-card__summary {
+    padding: 8px 16px 12px;
+    font-family: var(--font-cond);
+    font-size: 13px; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: .5px;
+    border-top: 1px solid var(--border);
+    background: rgba(255,196,0,.04);
+  }
+
+  /* week separator */
+  .res-week-header {
+    font-family: var(--font-head);
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 16px 0 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .res-week-header::after { content:'';flex:1;height:1px;background:var(--border); }
+
+  /* Playoff results */
+  .playoff-results-section {
+    grid-column: 1 / -1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .playoff-results-section__head {
+    background: var(--surface2);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-head);
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+  .playoff-result-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px; flex-wrap: wrap;
+  }
+  .playoff-result-row:last-child { border-bottom: none; }
+  .playoff-result-row__label {
+    font-family: var(--font-cond);
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-muted);
+    min-width: 120px;
+  }
+  .playoff-result-row__winner {
+    font-family: var(--font-cond);
+    font-size: 17px; font-weight: 700;
+    flex: 1;
+  }
+  .playoff-result-row__summary {
+    font-family: var(--font-cond);
+    font-size: 13px; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* Loading */
+  .res-loading {
+    text-align:center;padding:40px 20px;
+    font-family:var(--font-cond);font-size:14px;
+    color:var(--text-muted);letter-spacing:2px;
+  }
+
+  /* ─── Team filter ─── */
+  .team-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+    position: relative; z-index:1;
+    background: var(--bg2);
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .team-filter-bar::-webkit-scrollbar { display: none; }
+  .team-filter-bar__label {
+    font-family: var(--font-cond);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+  .tf-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 11px 5px 7px;
+    cursor: pointer;
+    font-family: var(--font-cond);
+    font-size: 12px; font-weight: 700;
+    color: var(--text-dim);
+    transition: all .15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tf-btn:hover { border-color: var(--border2); color: var(--text); }
+  .tf-btn.active { border-color: var(--green); color: var(--green); background: rgba(0,230,118,.08); }
+  .tf-btn.active-team { border-color: var(--gold); background: rgba(255,196,0,.08); }
+  .tf-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  #tf-team-buttons { display: contents; }
+  .match-result-card.filtered-out { display: none !important; }
+  .res-week-header.filtered-out   { display: none !important; }
+
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="results-hero container">
+  <div class="results-hero__eye">HBL PSL 2026 — Live Standings</div>
+  <h2 class="results-hero__title">RESULTS &amp; <span>STANDINGS</span></h2>
+  <p class="results-hero__sub">Updated after each match.</p>
+</div>
+
+<!-- Team filter bar -->
+<div class="team-filter-bar" id="team-filter-bar">
+  <span class="team-filter-bar__label">Filter by team</span>
+  <button class="tf-btn active" id="tf-all" onclick="setTeamFilter(null, this)">
+    All Matches
+  </button>
+  <span id="tf-team-buttons"></span>
+</div>
+
+<div id="results-loading" style="text-align:center;padding:48px 20px;font-family:var(--font-cond);font-size:16px;color:var(--text-muted);letter-spacing:2px;position:relative;z-index:1;">
+  Loading results…
+</div>
+
+<div id="results-body" style="display:none;position:relative;z-index:1;">
+  <!-- Combined standings + playoffs -->
+  <div class="results-layout container">
+
+    <!-- Single combined standings table -->
+    <div class="standings-card">
+      <div class="standings-card__head">
+        <span class="standings-card__title" style="color:var(--text);">POINTS TABLE</span>
+        <span style="font-family:var(--font-cond);font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--text-muted);">Top 4 qualify · <span style="color:var(--green);">Q = Qualifier spot</span></span>
+      </div>
+      <table class="st-table" id="standings-combined"></table>
+    </div>
+
+    <!-- Playoff bracket results (shown once any playoff result exists) -->
+    <div class="playoff-results-section" id="playoff-results-section" style="display:none;">
+      <div class="playoff-results-section__head">🏆 Playoff Results</div>
+      <div id="playoff-results-body"></div>
+    </div>
+
+    <!-- Match results by week + playoffs -->
+    <div class="results-section">
+      <div class="results-section-head">MATCH RESULTS</div>
+      <div id="match-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script src="logos.js"></script>
+<script src="data.js"></script>
+<script>
+  const me = getCurrentUser();
+  document.getElementById('nav-placeholder').innerHTML = renderNav('results');
+
+  let _activeTeamFilter = null;
+
+  async function initPage() {
+    await loadResults();
+    const results = getResults();
+    const { A, B } = calcActualStandings();
+
+    document.getElementById('results-loading').style.display = 'none';
+    document.getElementById('results-body').style.display = 'block';
+
+    renderTeamFilterButtons();
+    renderCombinedStandings(A, B, results);
+    renderMatchResults(results);
+    renderPlayoffResults(results);
+  }
+
+  function renderTeamFilterButtons() {
+    const container = document.getElementById('tf-team-buttons');
+    if (!container) return;
+    container.innerHTML = Object.entries(TEAMS).map(([key, t]) =>
+      `<button class="tf-btn" id="tf-${key}" onclick="setTeamFilter('${key}', this)"
+         style="border-color:${t.color}22;">
+        <span class="tf-dot" style="background:${t.color};"></span>
+        ${t.abbr}
+      </button>`
+    ).join('');
+  }
+
+  function setTeamFilter(teamKey, btn) {
+    _activeTeamFilter = teamKey;
+    // Update button states
+    document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('active', 'active-team'));
+    btn.classList.add(teamKey ? 'active-team' : 'active');
+    // Apply filter to match cards
+    applyTeamFilter();
+  }
+
+  function applyTeamFilter() {
+    const f = _activeTeamFilter;
+    // Filter match cards
+    document.querySelectorAll('.match-result-card[data-teams]').forEach(card => {
+      const teams = card.getAttribute('data-teams').split(',');
+      card.classList.toggle('filtered-out', !!(f && !teams.includes(f)));
+    });
+    // Hide week headers where all children are filtered
+    document.querySelectorAll('.res-week-header').forEach(wh => {
+      let next = wh.nextElementSibling;
+      let anyVisible = false;
+      while (next && !next.classList.contains('res-week-header')) {
+        if (!next.classList.contains('filtered-out')) anyVisible = true;
+        next = next.nextElementSibling;
+      }
+      wh.classList.toggle('filtered-out', !anyVisible);
+    });
+  }
+
+  function renderCombinedStandings(A, B, results) {
+    const el = document.getElementById('standings-combined');
+    if (!el) return;
+
+    // Merge all 8 teams, sort by pts then NRR
+    const allRows = [...A, ...B].sort((a, b) => {
+      if (b.pts !== a.pts) return b.pts - a.pts;
+      const nrrA = a.nrr || 0, nrrB = b.nrr || 0;
+      return nrrB - nrrA;
+    });
+
+    const hasGames = allRows.some(r => r.mp > 0);
+
+    // Determine which teams are confirmed qualifiers (from admin or top-4 by points)
+    const confirmedQuals = results.qualifiers || null;
+
+    el.innerHTML = `
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Team</th>
+          <th>GRP</th>
+          <th>MP</th>
+          <th>W</th>
+          <th>L</th>
+          <th>NR</th>
+          <th>PTS</th>
+          <th>NRR</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${allRows.map((r, i) => {
+          const t = TEAMS[r.team];
+          const nrrVal = r.nrr || 0;
+          const nrrCls = nrrVal > 0 ? 'nrr-pos' : nrrVal < 0 ? 'nrr-neg' : '';
+          const nrrStr = nrrVal > 0 ? '+' + nrrVal.toFixed(3) : nrrVal.toFixed(3);
+
+          // Qualifier badge: use confirmed list if available, else top-4 by position
+          const isQ = confirmedQuals
+            ? confirmedQuals.includes(r.team)
+            : i < 4;
+          const seedNum = confirmedQuals
+            ? (confirmedQuals.indexOf(r.team) + 1)
+            : (i < 4 ? i + 1 : null);
+          const posLabel = isQ ? `<span style="color:var(--green);font-weight:700;font-size:13px;">Q${seedNum}</span>` : `${i+1}`;
+
+          return `<tr class="${isQ ? 'q-row' : ''}">
+            <td>${posLabel}</td>
+            <td>
+              <div class="st-row-team">
+                ${teamAvatar(r.team, 26)}
+                <span style="color:${t.color};font-weight:700;">${t.name}</span>
+              </div>
+            </td>
+            <td style="color:var(--text-muted);font-size:12px;">${t.group}</td>
+            <td>${r.mp}</td>
+            <td>${r.w}</td>
+            <td>${r.l}</td>
+            <td style="color:var(--gold)">${r.nr || 0}</td>
+            <td class="pts-cell ${isQ?'top':''}">${r.pts}</td>
+            <td class="${nrrCls}" style="font-family:var(--font-cond);font-weight:700;font-size:12px;">${hasGames ? nrrStr : '—'}</td>
+          </tr>`;
+        }).join('')}
+      </tbody>`;
+  }
+
+  function renderMatchResults(results) {
+    const weeks = [
+      { label:"Week 1 \u2014 Lahore",  ids:[1,2,3,4,5,6] },
+      { label:"Week 2 \u2014 Lahore",  ids:[7,8,9,10,11,12,13,14] },
+      { label:"Week 3 \u2014 Karachi", ids:[15,16,17,18,19,20,21,22] },
+      { label:"Week 4 \u2014 Karachi", ids:[23,24,25,26,27,28,29] },
+      { label:"Week 5 \u2014 Mixed",   ids:[30,31,32,33,34,35,36,37,38,39,40] },
+    ];
+
+    // Helper: convert "7:00 PM" / "2:30 PM" to minutes for sorting
+    function timeToMins(t) {
+      const parts = t.split(" ");
+      const [h, m] = parts[0].split(":").map(Number);
+      const pm = parts[1] === "PM";
+      return (pm && h !== 12 ? h + 12 : h) * 60 + m;
+    }
+
+    let html = "";
+    weeks.forEach(wk => {
+      // Get matches and sort: by date first, then by time within same day
+      const matches = wk.ids
+        .map(id => GROUP_MATCHES.find(x => x.id === id))
+        .filter(Boolean)
+        .sort((a, b) => {
+          if (a.date !== b.date) return 0; // keep week order for different dates
+          return timeToMins(a.time) - timeToMins(b.time); // earlier time first
+        });
+
+      html += `<div class="res-week-header">${wk.label}</div>`;
+      matches.forEach(m => {
+        const t1 = TEAMS[m.t1], t2 = TEAMS[m.t2];
+        const winner = results[m.id];
+        const detail = getMatchDetail(m.id);
+        const locked = isMatchLocked(m.id);
+
+        let statusTag, statusCls;
+        if (winner === 'NR') {
+          statusTag = "NO RESULT"; statusCls = "status-nr";
+        } else if (winner) {
+          statusTag = "COMPLETED"; statusCls = "status-completed";
+        } else if (locked) {
+          statusTag = "IN PROGRESS"; statusCls = "status-live";
+        } else {
+          statusTag = m.date + " \u00b7 " + m.time; statusCls = "status-upcoming";
+        }
+
+        const isT1Winner = winner === m.t1;
+        const isT2Winner = winner === m.t2;
+        const isNR = winner === 'NR';
+
+        let t1Score = '', t2Score = '';
+        if (detail && winner) {
+          // Helper: format score as "runs/wickets" using actual stored wickets
+          // winnerWkts/loserWkts are stored directly now; fall back to calculated values
+          const getWktsStr = (wkts, fallback) => {
+            if (wkts !== null && wkts !== undefined && wkts !== '') return String(parseInt(wkts));
+            return fallback;
+          };
+
+          if (isT1Winner) {
+            const wWkts = getWktsStr(detail.winnerWkts,
+              detail.marginType === 'wickets' ? String(10 - parseInt(detail.margin||0)) : 'all');
+            const lWkts = getWktsStr(detail.loserWkts, '10');
+            t1Score = detail.winnerScore ? `${detail.winnerScore}/${wWkts}` : '';
+            t2Score = detail.loserScore  ? `${detail.loserScore}/${lWkts}`  : '';
+          } else {
+            const wWkts = getWktsStr(detail.winnerWkts,
+              detail.marginType === 'wickets' ? String(10 - parseInt(detail.margin||0)) : 'all');
+            const lWkts = getWktsStr(detail.loserWkts, '10');
+            t2Score = detail.winnerScore ? `${detail.winnerScore}/${wWkts}` : '';
+            t1Score = detail.loserScore  ? `${detail.loserScore}/${lWkts}`  : '';
+          }
+        }
+
+        html += `
+        <div class="match-result-card ${winner?"has-result":""}" data-teams="${m.t1},${m.t2}">
+          <div class="match-result-card__header">
+            <span class="match-result-card__meta">M${m.id} \u00b7 ${m.date} \u00b7 ${m.venue} \u00b7 ${m.time}</span>
+            <span class="match-result-card__status ${statusCls}">${statusTag}</span>
+          </div>
+          <div class="match-result-card__body">
+            <div class="res-team ${isT1Winner?"winner":winner&&!isNR?"loser":""}">
+              ${teamAvatar(m.t1, 32)}
+              <div>
+                <div class="res-team__name" style="color:${t1.color}">${t1.name}</div>
+                ${t1Score ? `<div class="res-team__score">${t1Score}</div>` : ""}
+              </div>
+            </div>
+            <span class="res-vs">VS</span>
+            <div class="res-team res-team--right ${isT2Winner?"winner":winner&&!isNR?"loser":""}">
+              ${teamAvatar(m.t2, 32)}
+              <div style="text-align:right;">
+                <div class="res-team__name" style="color:${t2.color}">${t2.name}</div>
+                ${t2Score ? `<div class="res-team__score">${t2Score}</div>` : ""}
+              </div>
+            </div>
+          </div>
+          ${detail?.summary ? `<div class="match-result-card__summary">🏏 ${detail.summary}</div>` : ""}
+        </div>`;
+      });
+    });
+
+    document.getElementById("match-results-list").innerHTML = html;
+  }
+
+  function renderPlayoffResults(results) {
+    const quals = results.qualifiers;
+
+    // Build playoff round definitions using actual qualified teams
+    // Qualifier: seed1 vs seed2 | Elim1: seed3 vs seed4
+    // Elim2: loser-qualifier vs winner-elim1 | Final: winner-qualifier vs winner-elim2
+    const s1 = quals?.[0], s2 = quals?.[1], s3 = quals?.[2], s4 = quals?.[3];
+    const qualWinner = results.playoff_qualifier;
+    const e1Winner   = results.playoff_elim1;
+    const qualLoser  = qualWinner ? (qualWinner === s1 ? s2 : s1) : null;
+    const e2Winner   = results.playoff_elim2;
+
+    const playoffRounds = [
+      { key:'playoff_qualifier', label:'QUALIFIER', date:'Apr 28', venue:'Karachi',
+        t1: s1||'TBD', t2: s2||'TBD' },
+      { key:'playoff_elim1',     label:'ELIMINATOR 1', date:'Apr 29', venue:'Lahore',
+        t1: s3||'TBD', t2: s4||'TBD' },
+      { key:'playoff_elim2',     label:'ELIMINATOR 2', date:'May 1', venue:'Lahore',
+        t1: qualLoser||'TBD', t2: e1Winner||'TBD' },
+      { key:'playoff_final',     label:'🏆 FINAL', date:'May 3', venue:'Lahore',
+        t1: qualWinner||'TBD', t2: e2Winner||'TBD' },
+    ];
+
+    // Always show the playoff section if qualifiers are confirmed
+    const hasQuals = quals && quals.length === 4;
+    const hasAnyResult = playoffRounds.some(r => results[r.key]);
+    if (!hasQuals && !hasAnyResult) return;
+
+    document.getElementById('playoff-results-section').style.display = 'block';
+
+    document.getElementById('playoff-results-body').innerHTML = playoffRounds.map(r => {
+      const winner  = results[r.key];
+      const detail  = getPlayoffDetail(r.key);
+      const t1      = r.t1 !== 'TBD' ? TEAMS[r.t1] : null;
+      const t2      = r.t2 !== 'TBD' ? TEAMS[r.t2] : null;
+      const isT1Win = winner === r.t1;
+      const isT2Win = winner === r.t2;
+
+      // Don't show rounds whose teams aren't determined yet unless resulted
+      if (!winner && (r.t1 === 'TBD' || r.t2 === 'TBD')) return '';
+
+      const locked = (() => { try { return isMatchLocked({id:99,date:r.date,time:'7:00 PM'}); } catch(e) { return false; } })();
+      let statusTag, statusCls;
+      if (winner)        { statusTag = 'COMPLETED'; statusCls = 'status-completed'; }
+      else               { statusTag = r.date + ' · 7:00 PM'; statusCls = 'status-upcoming'; }
+
+      const t1Score = detail && winner && isT1Win ? (detail.winnerScore ? `${detail.winnerScore}/${detail.winnerWkts??''}` : '') :
+                      detail && winner && isT2Win ? (detail.loserScore  ? `${detail.loserScore}/${detail.loserWkts??''}`   : '') : '';
+      const t2Score = detail && winner && isT2Win ? (detail.winnerScore ? `${detail.winnerScore}/${detail.winnerWkts??''}` : '') :
+                      detail && winner && isT1Win ? (detail.loserScore  ? `${detail.loserScore}/${detail.loserWkts??''}`   : '') : '';
+
+      return `
+      <div class="match-result-card ${winner?'has-result':''}" data-teams="${r.t1},${r.t2}">
+        <div class="match-result-card__header">
+          <span class="match-result-card__meta">${r.label} · ${r.date} · ${r.venue} · 7:00 PM</span>
+          <span class="match-result-card__status ${statusCls}">${statusTag}</span>
+        </div>
+        <div class="match-result-card__body">
+          <div class="res-team ${isT1Win?'winner':winner?'loser':''}">
+            ${r.t1!=='TBD' ? teamAvatar(r.t1, 32) : '<div style="width:32px;height:32px;background:var(--surface);border-radius:50%;"></div>'}
+            <div>
+              <div class="res-team__name" style="color:${t1?.color||'var(--gold)'}">
+                ${t1?.name || r.t1}
+              </div>
+              ${t1Score ? `<div class="res-team__score">${t1Score}</div>` : ''}
+            </div>
+          </div>
+          <span class="res-vs">VS</span>
+          <div class="res-team res-team--right ${isT2Win?'winner':winner?'loser':''}">
+            ${r.t2!=='TBD' ? teamAvatar(r.t2, 32) : '<div style="width:32px;height:32px;background:var(--surface);border-radius:50%;"></div>'}
+            <div style="text-align:right;">
+              <div class="res-team__name" style="color:${t2?.color||'var(--gold)'}">
+                ${t2?.name || r.t2}
+              </div>
+              ${t2Score ? `<div class="res-team__score">${t2Score}</div>` : ''}
+            </div>
+          </div>
+        </div>
+        ${detail?.summary ? `<div class="match-result-card__summary">🏏 ${detail.summary}</div>` : ''}
+      </div>`;
+    }).filter(Boolean).join('');
+  }
+
+  initPage();
+
+  // Auto-refresh every 60 seconds so results update without page reload
+  setInterval(() => initPage(), 60000);
+</script>
+</body>
+</html>

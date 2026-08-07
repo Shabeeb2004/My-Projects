@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/png" href="data:image/png;base64,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"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PSL 2026 — Email Reminders Setup</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  .email-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    position: relative; z-index:1;
+  }
+  .setup-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,230,118,.08);
+    margin-bottom: 20px;
+  }
+  .setup-card__head {
+    background: var(--surface2);
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-head);
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .setup-card__body { padding: 22px; }
+
+  .match-reminder-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 12px; flex-wrap: wrap;
+  }
+  .match-reminder-row:last-child { border-bottom: none; }
+  .match-reminder-row__teams {
+    font-family: var(--font-cond);
+    font-size: 14px; font-weight: 700;
+    flex: 1;
+  }
+  .match-reminder-row__time {
+    font-family: var(--font-cond);
+    font-size: 12px; color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .reminder-status {
+    font-family: var(--font-cond);
+    font-size: 11px; font-weight: 700;
+    padding: 3px 8px; border-radius: 3px;
+    white-space: nowrap;
+  }
+  .reminder-sent    { background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.25); }
+  .reminder-pending { background:rgba(255,196,0,.08);color:var(--gold);border:1px solid rgba(255,196,0,.2); }
+  .reminder-past    { background:var(--border);color:var(--text-muted); }
+
+  .emailjs-note {
+    background: rgba(255,196,0,.05);
+    border: 1px solid rgba(255,196,0,.2);
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .emailjs-note strong { color: var(--gold); }
+  .emailjs-note code {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-family: monospace;
+    color: var(--green);
+    font-size: 12px;
+  }
+  .config-field { margin-bottom: 14px; }
+  .config-field label {
+    font-family: var(--font-cond);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); display: block; margin-bottom: 5px;
+  }
+  .send-all-btn {
+    margin-top: 16px;
+  }
+  .send-log {
+    margin-top: 14px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    display: none;
+  }
+  .send-log.active { display: block; }
+  .log-line { padding: 2px 0; }
+  .log-line.ok  { color: var(--green); }
+  .log-line.err { color: var(--red); }
+  .log-line.info{ color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="email-wrap">
+  <div style="margin-bottom:28px;">
+    <div style="font-family:var(--font-cond);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:8px;">Admin Tool</div>
+    <h2 style="font-family:var(--font-head);font-size:44px;letter-spacing:3px;color:var(--text);">EMAIL <span style="color:var(--gold);">REMINDERS</span></h2>
+    <p style="color:var(--text-dim);font-size:14px;margin-top:6px;">Send match reminder emails to all users who have added their email address. Uses EmailJS (free, no server needed).</p>
+  </div>
+
+  <!-- Setup instructions -->
+  <div class="emailjs-note">
+    <strong>📌 One-time setup required:</strong><br><br>
+    1. Go to <a href="https://www.emailjs.com" target="_blank" style="color:var(--gold);">emailjs.com</a> → create a free account<br>
+    2. Add an <strong>Email Service</strong> (e.g. Gmail) → note the <code>Service ID</code><br>
+    3. Create an <strong>Email Template</strong> with these variables:<br>
+    &nbsp;&nbsp;&nbsp;• <code>{{to_email}}</code> — recipient<br>
+    &nbsp;&nbsp;&nbsp;• <code>{{to_name}}</code> — username<br>
+    &nbsp;&nbsp;&nbsp;• <code>{{match_title}}</code> — e.g. "Lahore Qalandars vs Hyderabad Kingsmen"<br>
+    &nbsp;&nbsp;&nbsp;• <code>{{match_date}}</code> — e.g. "Mar 26, 7:00 PM PKT"<br>
+    &nbsp;&nbsp;&nbsp;• <code>{{match_venue}}</code> — venue<br>
+    &nbsp;&nbsp;&nbsp;• <code>{{has_predicted}}</code> — "YES ✅" or "NOT YET ⚠️"<br>
+    4. Note your <code>Public Key</code>, <code>Service ID</code>, and <code>Template ID</code><br>
+    5. Enter them below and save
+  </div>
+
+  <!-- EmailJS Config -->
+  <div class="setup-card">
+    <div class="setup-card__head">⚙️ EmailJS Configuration</div>
+    <div class="setup-card__body">
+      <div class="config-field">
+        <label>EmailJS Public Key</label>
+        <input class="form-input" type="text" id="ejs-pubkey" placeholder="e.g. user_xxxxxxxxxxxx"/>
+      </div>
+      <div class="config-field">
+        <label>Service ID</label>
+        <input class="form-input" type="text" id="ejs-service" placeholder="e.g. service_xxxxxxx"/>
+      </div>
+      <div class="config-field">
+        <label>Template ID</label>
+        <input class="form-input" type="text" id="ejs-template" placeholder="e.g. template_xxxxxxx"/>
+      </div>
+      <button class="btn btn--outline" onclick="saveEJSConfig()">Save Configuration</button>
+      <div id="config-saved" style="margin-top:10px;font-family:var(--font-cond);font-size:13px;color:var(--green);display:none;">✓ Configuration saved to browser</div>
+    </div>
+  </div>
+
+  <!-- Send reminders -->
+  <div class="setup-card">
+    <div class="setup-card__head">
+      📬 Send Reminders
+      <span style="font-family:var(--font-cond);font-size:12px;font-weight:700;color:var(--text-muted);" id="users-with-email">Loading…</span>
+    </div>
+    <div class="setup-card__body">
+      <p style="color:var(--text-dim);font-size:13px;margin-bottom:16px;">
+        Select a match and send reminder emails to all users who have saved their email. Emails will note whether each user has already predicted the match.
+      </p>
+
+      <div class="config-field">
+        <label>Select Match to Send Reminder For</label>
+        <select class="form-input" id="reminder-match-select">
+          <option value="">— Select a match —</option>
+        </select>
+      </div>
+
+      <button class="btn btn--primary send-all-btn" onclick="sendReminders()">SEND REMINDERS TO ALL USERS →</button>
+      <div class="send-log" id="send-log"></div>
+    </div>
+  </div>
+
+  <!-- Upcoming matches with reminder window -->
+  <div class="setup-card">
+    <div class="setup-card__head">⏰ Upcoming Matches</div>
+    <div class="setup-card__body" id="upcoming-matches-list">Loading…</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script src="logos.js"></script>
+<script src="data.js"></script>
+<script>
+  // This page is admin-only but has no hard gate so it can be bookmarked
+  document.getElementById('nav-placeholder').innerHTML = renderNav('');
+
+  const EJS_KEY = 'psl2026_emailjs_config';
+
+  function loadEJSConfig() {
+    try { return JSON.parse(localStorage.getItem(EJS_KEY)) || {}; } catch { return {}; }
+  }
+  function saveEJSConfig() {
+    const cfg = {
+      publicKey:  document.getElementById('ejs-pubkey').value.trim(),
+      serviceId:  document.getElementById('ejs-service').value.trim(),
+      templateId: document.getElementById('ejs-template').value.trim(),
+    };
+    localStorage.setItem(EJS_KEY, JSON.stringify(cfg));
+    document.getElementById('config-saved').style.display = 'block';
+    setTimeout(() => document.getElementById('config-saved').style.display = 'none', 2500);
+  }
+
+  // Pre-fill saved config
+  const savedCfg = loadEJSConfig();
+  if (savedCfg.publicKey)  document.getElementById('ejs-pubkey').value  = savedCfg.publicKey;
+  if (savedCfg.serviceId)  document.getElementById('ejs-service').value = savedCfg.serviceId;
+  if (savedCfg.templateId) document.getElementById('ejs-template').value = savedCfg.templateId;
+
+  async function initPage() {
+    const allUsers = await loadAllUsers();
+    const usersWithEmail = Object.values(allUsers).filter(u => u.email);
+    document.getElementById('users-with-email').textContent = `${usersWithEmail.length} users with email`;
+
+    // Populate match select (only upcoming / not-yet-resulted)
+    const results = await loadResults();
+    const upcoming = MATCHES.filter(m => !isMatchLocked(m.id) && m.type !== 'P');
+    const select = document.getElementById('reminder-match-select');
+    select.innerHTML = '<option value="">— Select a match —</option>' +
+      upcoming.map(m => {
+        const t1 = TEAMS[m.t1], t2 = TEAMS[m.t2];
+        return `<option value="${m.id}">M${m.id}: ${t1?.name||m.t1} vs ${t2?.name||m.t2} · ${m.date} ${m.time}</option>`;
+      }).join('');
+
+    // Upcoming matches list
+    const nowMs = Date.now();
+    document.getElementById('upcoming-matches-list').innerHTML = upcoming.slice(0,10).map(m => {
+      const t1 = TEAMS[m.t1], t2 = TEAMS[m.t2];
+      const kickoff = _matchKickoff(m);
+      const diffMs  = kickoff - nowMs;
+      const diffHrs = diffMs / 3600000;
+      let badge, badgeCls;
+      if (diffHrs <= 0)  { badge='Started'; badgeCls='reminder-past'; }
+      else if (diffHrs <= 1) { badge='< 1hr away ⚡'; badgeCls='reminder-sent'; }
+      else if (diffHrs <= 24){ badge=`${Math.round(diffHrs)}hrs away`; badgeCls='reminder-pending'; }
+      else { badge=m.date+' '+m.time; badgeCls='reminder-past'; }
+      return `<div class="match-reminder-row">
+        <div class="match-reminder-row__teams">
+          <span style="color:${t1?.color}">${t1?.abbr||m.t1}</span>
+          <span style="color:var(--text-muted)"> vs </span>
+          <span style="color:${t2?.color}">${t2?.abbr||m.t2}</span>
+        </div>
+        <span class="match-reminder-row__time">${m.date} · ${m.time} · ${m.venue}</span>
+        <span class="reminder-status ${badgeCls}">${badge}</span>
+        <button class="btn btn--sm btn--outline" onclick="sendReminderForMatch(${m.id})">Send Now</button>
+      </div>`;
+    }).join('') || '<p style="color:var(--text-muted);font-size:13px;">No upcoming matches</p>';
+  }
+
+  async function sendReminderForMatch(matchId) {
+    document.getElementById('reminder-match-select').value = matchId;
+    await sendReminders();
+  }
+
+  async function sendReminders() {
+    const cfg = loadEJSConfig();
+    if (!cfg.publicKey || !cfg.serviceId || !cfg.templateId) {
+      alert('Please fill in and save your EmailJS configuration first.');
+      return;
+    }
+
+    const matchId = parseInt(document.getElementById('reminder-match-select').value);
+    if (!matchId) { alert('Please select a match first.'); return; }
+
+    const m  = MATCHES.find(x => x.id === matchId);
+    if (!m)  { alert('Match not found.'); return; }
+
+    const t1 = TEAMS[m.t1], t2 = TEAMS[m.t2];
+    const matchTitle = `${t1?.name||m.t1} vs ${t2?.name||m.t2}`;
+    const matchDate  = `${m.date}, ${m.time} PKT`;
+
+    // Init EmailJS
+    emailjs.init(cfg.publicKey);
+
+    const allUsers = await loadAllUsers();
+    const targets  = Object.values(allUsers).filter(u => u.email);
+
+    const logEl = document.getElementById('send-log');
+    logEl.classList.add('active');
+    logEl.innerHTML = `<div class="log-line info">Sending to ${targets.length} users…</div>`;
+
+    let sent = 0, failed = 0;
+
+    for (const u of targets) {
+      const hasPred = !!(u.predictions && u.predictions[matchId]);
+      const params = {
+        to_email:      u.email,
+        to_name:       u.username,
+        match_title:   matchTitle,
+        match_date:    matchDate,
+        match_venue:   m.venue,
+        has_predicted: hasPred ? 'YES ✅ — your prediction is locked in!' : 'NOT YET ⚠️ — predict now before the match starts!',
+        predict_url:   window.location.origin + window.location.pathname.replace('email-reminders.html','') + 'predict.html',
+      };
+      try {
+        await emailjs.send(cfg.serviceId, cfg.templateId, params);
+        sent++;
+        logEl.innerHTML += `<div class="log-line ok">✓ Sent to ${u.email} (${u.username})</div>`;
+      } catch(e) {
+        failed++;
+        logEl.innerHTML += `<div class="log-line err">✗ Failed for ${u.email}: ${e.text || e.message || 'Unknown error'}</div>`;
+      }
+      // Small delay to avoid rate limits
+      await new Promise(r => setTimeout(r, 300));
+    }
+
+    logEl.innerHTML += `<div class="log-line info" style="margin-top:8px;font-weight:700;">Done — ${sent} sent, ${failed} failed.</div>`;
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  initPage();
+</script>
+</body>
+</html>

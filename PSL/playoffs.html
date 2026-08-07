@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/png" href="data:image/png;base64,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"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PSL 2026 — Playoff Predictions</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  .playoffs-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 0;
+    min-height: calc(100vh - 130px);
+    position: relative; z-index: 1;
+  }
+  @media(max-width:900px) { .playoffs-layout { grid-template-columns: 1fr; } }
+
+  .playoffs-main { padding: 28px 24px; border-right: 1px solid var(--border); }
+  .playoffs-side  { padding: 24px; }
+
+  /* Round card */
+  .round-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: border-color .2s;
+  }
+  .round-card.complete { border-color: rgba(0,230,118,.35); }
+  .round-card.locked   { opacity: .45; }
+
+  .round-card__head {
+    background: var(--surface2);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .round-card__title {
+    font-family: var(--font-head);
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+  .round-card__meta {
+    font-family: var(--font-cond);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .round-card__status {
+    font-family: var(--font-cond);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .status-done    { background: rgba(0,230,118,.12); color: var(--green); border: 1px solid rgba(0,230,118,.25); }
+  .status-pending { background: rgba(255,196,0,.08); color: var(--gold);  border: 1px solid rgba(255,196,0,.2); }
+  .status-locked  { background: var(--border); color: var(--text-muted); }
+
+  .round-card__desc {
+    padding: 12px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* Matchup picker */
+  .matchup {
+    padding: 16px 20px;
+  }
+  .matchup__label {
+    font-family: var(--font-cond);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .team-options { display: flex; gap: 10px; flex-wrap: wrap; }
+  .team-option {
+    flex: 1; min-width: 140px;
+    background: var(--bg);
+    border: 2px solid var(--border2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .team-option:hover:not(.locked-opt) { border-color: var(--green); background: rgba(0,230,118,.04); }
+  .team-option.selected {
+    border-color: var(--green);
+    background: rgba(0,230,118,.08);
+    box-shadow: 0 0 0 1px var(--green);
+  }
+  .team-option.eliminated {
+    opacity: .35; cursor: not-allowed;
+    text-decoration: line-through;
+  }
+  .team-option.locked-opt { opacity: .45; cursor: not-allowed; }
+  .team-option__name {
+    font-family: var(--font-cond);
+    font-size: 15px;
+    font-weight: 700;
+    flex: 1;
+  }
+  .team-option__check {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid var(--border2);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s;
+  }
+  .team-option.selected .team-option__check {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .team-option.selected .team-option__check::after {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: #000;
+  }
+
+  .matchup-divider {
+    text-align: center;
+    font-family: var(--font-head);
+    font-size: 16px;
+    color: var(--text-muted);
+    padding: 8px 0;
+  }
+
+  /* Arrow between rounds */
+  .round-arrow {
+    text-align: center;
+    padding: 6px;
+    color: var(--text-muted);
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  /* Qualifier note box */
+  .qualifier-note {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin: 0 20px 16px;
+    line-height: 1.5;
+  }
+
+  /* Sidebar: qualified teams */
+  .qualified-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .qualified-card__head {
+    background: var(--surface2);
+    padding: 12px 16px;
+    font-family: var(--font-cond);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+  }
+  .qualified-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .qualified-row:last-child { border-bottom: none; }
+  .qualified-row__pos {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head);
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .pos-1 { background: var(--gold);  color: #000; }
+  .pos-2 { background: #b0b0b0;     color: #000; }
+  .pos-3 { background: #cd7f32;     color: #000; }
+  .pos-4 { background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border2); }
+  .qualified-row__name { font-family: var(--font-cond); font-size: 15px; font-weight: 700; flex:1; }
+  .qualified-row__pts  { font-family: var(--font-cond); font-size: 13px; font-weight: 700; color: var(--green); }
+
+  /* Bracket summary */
+  .summary-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .summary-box__head {
+    background: var(--surface2);
+    padding: 12px 16px;
+    font-family: var(--font-cond);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-row__label {
+    font-family: var(--font-cond);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .summary-row__value {
+    font-family: var(--font-cond);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* Submit bar */
+  .submit-wrap {
+    padding: 18px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+    position: sticky; bottom: 0; z-index: 50;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .submit-wrap p { font-size: 13px; color: var(--text-dim); flex: 1; }
+
+  /* Tiebreaker modal */
+  .tb-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
+  .tb-modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0,0,0,.3);
+  }
+
+  .tb-modal__head {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tb-modal__eyebrow {
+    font-family: var(--font-cond);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .tb-modal__title {
+    font-family: var(--font-head);
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--text);
+  }
+
+  .tb-modal__body {
+    padding: 20px;
+  }
+
+  .tb-modal__desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .tb-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tb-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: var(--font-cond);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .tb-option:hover {
+    border-color: var(--green);
+    background: rgba(0,230,118,.04);
+  }
+
+  .tb-option__dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tb-option__pts {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* Error message */
+  .error-message {
+    background: rgba(255,23,68,.1);
+    border: 1px solid var(--red);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    color: var(--red);
+  }
+  .error-message a {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+
+  /* Trophy anim */
+  @keyframes trophyPop { 0%{transform:scale(0) rotate(-10deg)} 60%{transform:scale(1.2)} 100%{transform:scale(1) rotate(0)} }
+  .trophy-anim { animation: trophyPop .5s ease forwards; display:inline-block; }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="playoffs-layout">
+  <div class="playoffs-main">
+    <div class="section-head mb-24">
+      <div>
+        <div style="font-family:var(--font-cond);font-size:12px;font-weight:700;letter-spacing:3px;color:var(--green);margin-bottom:6px;text-transform:uppercase;">PSL 2026 Real Playoffs</div>
+        <h2 class="font-head" style="font-size:36px;letter-spacing:2px;">PLAYOFF BRACKET</h2>
+        <p class="text-dim" style="font-size:13px;margin-top:4px;">Predict the winner of each actual playoff match. All picks lock at the Qualifier start (Apr 28, 7:00 PM PKT).</p>
+      </div>
+    </div>
+
+    <div id="qualifying-points-note"></div>
+    <div id="bracket-container"></div>
+
+    <div style="height:80px;"></div>
+  </div>
+
+  <div class="playoffs-side">
+    <div class="qualified-card">
+      <div class="qualified-card__head">Actual Qualified Teams</div>
+      <div id="qualified-list"></div>
+    </div>
+    <div class="summary-box" id="summary-box">
+      <div class="summary-box__head">Your Bracket Summary</div>
+      <div id="summary-rows"></div>
+    </div>
+  </div>
+</div>
+
+<div class="submit-wrap">
+  <p id="submit-hint">Pick all playoff rounds to submit your complete prediction.</p>
+  <button class="btn btn--gold" id="submit-btn" onclick="submitPlayoffs()" disabled>Submit Predictions &rarr;</button>
+</div>
+
+<div id="po-tb-overlay" class="tb-overlay" style="display:none;">
+  <div class="tb-modal">
+    <div class="tb-modal__head">
+      <div class="tb-modal__eyebrow">⚠ Playoff Seeding Tie</div>
+      <div class="tb-modal__title">Who gets the higher seed?</div>
+    </div>
+    <div class="tb-modal__body">
+      <p class="tb-modal__desc">
+        Two teams are tied. Pick which team should get the higher playoff position.
+      </p>
+      <div id="po-tb-options" class="tb-options"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script src="logos.js"></script>
+<script src="data.js"></script>
+<script>
+/* ═══════════════════════════════════════════
+   PLAYOFFS PAGE — fully defensive version
+   Every function guards against null/undefined
+   before touching the DOM or doing logic.
+═══════════════════════════════════════════ */
+const username = requireLogin();
+
+let predictions    = {};
+let tiebreakers    = {};
+let qualifiers     = [];   // array of 4 {team, pts, w, ...}
+let picks          = {};
+let alreadySubmitted = false;
+
+// All 4 playoff picks lock at the moment the Qualifier starts (Apr 28, 7:00 PM PKT = UTC+5)
+// UTC equivalent: Apr 28, 14:00:00 UTC
+const PLAYOFF_LOCK_MS = Date.UTC(2026, 3, 28, 14, 0, 0); // month is 0-indexed
+function isPlayoffLocked() {
+  return alreadySubmitted || Date.now() >= PLAYOFF_LOCK_MS;
+}
+
+// Render nav immediately so user sees the bar
+document.getElementById('nav-placeholder').innerHTML = renderNav('playoffs');
+
+/* ── helpers ────────────────────────────── */
+function safeTeam(key) {
+  if (!key) return null;
+  return TEAMS[key] || null;
+}
+
+function showBracketError(msg) {
+  const el = document.getElementById('bracket-container');
+  if (el) el.innerHTML = `
+    <div class="error-message">
+      <strong>⚠ ${msg}</strong><br><br>
+      <a href="predict.html" style="color:var(--gold);">← Back to Predictions</a>
+    </div>`;
+  const btn = document.getElementById('submit-btn');
+  if (btn) btn.disabled = true;
+}
+
+/* ── init ───────────────────────────────── */
+async function initPage() {
+  try {
+    await pageInit(username);
+  } catch(e) {
+    console.warn('pageInit error (non-fatal):', e.message);
+  }
+
+  // Always re-read from cache after pageInit
+  predictions = {};
+  tiebreakers = {};
+  try { predictions = getPredictions(username) || {}; } catch(e) {}
+  try { tiebreakers = getTiebreakers(username)  || {}; } catch(e) {}
+
+  // Guard: user must have ALL 40 group predictions before accessing playoffs.
+  const groupDone = GROUP_MATCHES.filter(m => !!predictions[m.id]).length;
+
+  if (groupDone < GROUP_MATCHES.length) {
+    const missedLocked = GROUP_MATCHES.filter(m => isMatchLocked(m.id) && !predictions[m.id]).length;
+    const openRemaining = GROUP_MATCHES.filter(m => !isMatchLocked(m.id) && !predictions[m.id]).length;
+    if (openRemaining > 0) {
+      alert('Please predict all open group matches first! (' + openRemaining + ' still open)');
+    } else {
+      alert('You have ' + missedLocked + ' missed locked match' + (missedLocked===1?'':'es') + ' to fill in.\n\nGo to Predictions, scroll to the yellow warning matches, and pick a winner for each one.\nThis is required to determine your playoff qualifiers (no scoring points for missed picks).');
+    }
+    window.location.href = 'predict.html';
+    return;
+  }
+
+  // Re-render nav with fresh unlock state
+  document.getElementById('nav-placeholder').innerHTML = renderNav('playoffs');
+
+  // ── Load results (needed for confirmed qualifiers & playoff results) ──
+  try { await loadResults(); } catch(e) { console.warn('loadResults non-fatal:', e); }
+
+  // ── Determine qualifiers for the bracket ────────────────
+  // ALWAYS use confirmed real qualifiers from admin for the bracket.
+  // If not confirmed yet, fall back to user's predictions so they can still browse.
+  const confirmedQuals = getActualQualifiers && getActualQualifiers();
+  let bracketQuals = null;
+
+  if (confirmedQuals && confirmedQuals.length === 4) {
+    // Use real confirmed qualifiers in seed order
+    const nrr = (getResults().nrr) || {};
+    bracketQuals = confirmedQuals.map(team => {
+      const n = nrr[team] || {};
+      return { team, pts: n.pts || 0, w: n.w || 0, nrr: n.nrr || 0 };
+    });
+  }
+
+  // Compute user's predicted qualifiers from their OWN group stage picks via calcStandings.
+  // NEVER use getQualifiers() here — it returns real confirmed teams when admin sets them,
+  // which would make everyone show 4/4 correct in the qualifying points note.
+  // For any missed/locked matches, fill in the actual result so standings aren't
+  // distorted by gaps (same logic as calcScore in data.js).
+  let userPredQuals = [];
+  try {
+    const _results = getResults();
+    const filledPreds = {};
+    GROUP_MATCHES.forEach(m => {
+      const raw = predictions[m.id];
+      if (raw) {
+        // normalize missed-pick object format {v, missed:true} to plain string
+        filledPreds[m.id] = (typeof raw === 'object' && raw.v) ? raw.v : raw;
+      } else if (_results[m.id]) {
+        filledPreds[m.id] = _results[m.id];
+      }
+    });
+    const _uStandings = calcStandings(filledPreds, tiebreakers);
+    userPredQuals = [(_uStandings.A||[])[0], (_uStandings.A||[])[1], (_uStandings.B||[])[0], (_uStandings.B||[])[1]].filter(Boolean);
+  } catch(e) {}
+
+  // Use real bracket teams if available, otherwise fall back to user's predictions
+  let q = bracketQuals || userPredQuals;
+
+  if (!q || q.length < 4) {
+    showBracketError('Cannot determine the 4 qualifying teams. Please check your group stage predictions and resolve any ties.');
+    return;
+  }
+
+  const allValid = q.slice(0,4).every(x => x && x.team && TEAMS[x.team]);
+  if (!allValid) {
+    showBracketError('One or more qualifier teams are invalid. Please check your predictions.');
+    return;
+  }
+
+  qualifiers = q.slice(0, 4);
+
+  // ── Seeding tiebreaker (only applies when using user predictions, not confirmed) ──
+  let seedChoice = null;
+  try { seedChoice = getPlayoffSeedChoice(username); } catch(e) {}
+
+  if (!bracketQuals) {
+    const tie23 = qualifiers.length >= 3 &&
+      qualifiers[1].pts === qualifiers[2].pts &&
+      qualifiers[1].w   === qualifiers[2].w;
+    const tie34 = qualifiers.length >= 4 &&
+      qualifiers[2].pts === qualifiers[3].pts &&
+      qualifiers[2].w   === qualifiers[3].w;
+
+    if (tie23 && seedChoice && qualifiers[2]?.team === seedChoice) {
+      [qualifiers[1], qualifiers[2]] = [qualifiers[2], qualifiers[1]];
+    }
+    if (tie34 && seedChoice && qualifiers[3]?.team === seedChoice) {
+      [qualifiers[2], qualifiers[3]] = [qualifiers[3], qualifiers[2]];
+    }
+
+    if ((tie23 || tie34) && !seedChoice) {
+      openPlayoffTiebreaker(tie23);
+    }
+  }
+
+  // ── Load existing picks ──────────────────
+  try { picks = getPlayoffPicks(username) || {}; } catch(e) { picks = {}; }
+  try {
+    const u = getUser(username);
+    alreadySubmitted = !!(u && u.playoffsComplete);
+  } catch(e) { alreadySubmitted = false; }
+
+  // ── Render qualifying points note ──────────
+  // Show how many of the user's predicted teams actually qualified (and points earned)
+  renderQualifyingPointsNote(userPredQuals, confirmedQuals);
+
+  renderQualified(userPredQuals, confirmedQuals);
+  renderBracket();
+  updateSubmitBtn();
+}
+
+/* ── Qualifying points note ──────────────────── */
+function renderQualifyingPointsNote(userPredQuals, confirmedQuals) {
+  const el = document.getElementById('qualifying-points-note');
+  if (!el) return;
+
+  if (!confirmedQuals || confirmedQuals.length < 4) {
+    // Qualifiers not confirmed yet — show what user predicted
+    el.innerHTML = `
+      <div style="background:rgba(255,196,0,.08);border:1px solid rgba(255,196,0,.2);border-radius:8px;padding:14px 18px;margin-bottom:20px;">
+        <div style="font-family:var(--font-cond);font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:6px;text-transform:uppercase;">⭐ Qualifying Points (+15 each)</div>
+        <p style="font-size:13px;color:var(--text-dim);line-height:1.5;margin:0;">
+          You'll earn <strong style="color:var(--gold)">+15 pts</strong> for each of your predicted qualifiers that actually makes it to the playoffs. Points awarded once the real qualifiers are confirmed.
+        </p>
+      </div>`;
+    return;
+  }
+
+  const userTeams = (userPredQuals || []).map(q => q.team);
+  const hits = userTeams.filter(t => confirmedQuals.includes(t));
+  const misses = userTeams.filter(t => !confirmedQuals.includes(t));
+  const pts = hits.length * 15;
+
+  const hitHtml = hits.map(t => {
+    const team = TEAMS[t]; if (!team) return '';
+    return `<span style="color:${team.color};font-weight:700;">${team.short}</span>`;
+  }).join(', ') || '—';
+  const missHtml = misses.map(t => {
+    const team = TEAMS[t]; if (!team) return '';
+    return `<span style="color:var(--text-muted);text-decoration:line-through;">${team.short}</span>`;
+  }).join(', ') || '—';
+
+  el.innerHTML = `
+    <div style="background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.2);border-radius:8px;padding:14px 18px;margin-bottom:20px;">
+      <div style="font-family:var(--font-cond);font-size:11px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:8px;text-transform:uppercase;">⭐ Your Qualifying Points</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:3px;">Correct (${hits.length}/4)</div>
+          <div style="font-size:14px;">${hitHtml}</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:3px;">Missed</div>
+          <div style="font-size:14px;">${missHtml}</div>
+        </div>
+        <div style="margin-left:auto;text-align:right;">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:3px;">Earned</div>
+          <div style="font-family:var(--font-head);font-size:22px;color:var(--green);">+${pts} pts</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ── Qualified sidebar ────────────────── */
+function renderQualified(userPredQuals, confirmedQuals) {
+  const el = document.getElementById('qualified-list');
+  if (!el) return;
+  if (!qualifiers || qualifiers.length < 4) {
+    el.innerHTML = '<div style="padding:14px;color:var(--text-muted);font-size:13px;">Could not determine qualifiers.</div>';
+    return;
+  }
+
+  // If real qualifiers confirmed, show them. Otherwise show user's predictions.
+  const usingReal = !!(confirmedQuals && confirmedQuals.length === 4);
+  const userTeams = (userPredQuals || []).map(q => q.team);
+
+  const posCls = ['pos-1','pos-2','pos-3','pos-4'];
+  el.innerHTML = qualifiers.map((q, i) => {
+    const t = safeTeam(q?.team);
+    if (!t) return '';
+    const wasUserPick = userTeams.includes(q.team);
+    const tickHtml = usingReal
+      ? (wasUserPick
+          ? `<span title="You predicted this team" style="color:var(--green);font-size:16px;margin-left:4px;">✓</span>`
+          : `<span title="You didn't predict this team" style="color:var(--red);font-size:14px;margin-left:4px;">✗</span>`)
+      : '';
+    return `<div class="qualified-row">
+      <div class="qualified-row__pos ${posCls[i]}">${i+1}</div>
+      ${teamAvatar(q.team, 28)}
+      <span class="qualified-row__name" style="color:${t.color}">${t.name}${tickHtml}</span>
+      <span class="qualified-row__pts">${q.pts || 0}pts</span>
+    </div>`;
+  }).join('');
+}
+
+/* ── Bracket ─────────────────────────── */
+function renderBracket() {
+  const container = document.getElementById('bracket-container');
+  if (!container) return;
+
+  if (!qualifiers || qualifiers.length < 4) {
+    showBracketError('Qualifiers not loaded yet.');
+    return;
+  }
+
+  const q_t1  = qualifiers[0]?.team;
+  const q_t2  = qualifiers[1]?.team;
+  const e1_t1 = qualifiers[2]?.team;
+  const e1_t2 = qualifiers[3]?.team;
+
+  if (!q_t1 || !q_t2 || !e1_t1 || !e1_t2) {
+    showBracketError('One or more qualifier team slots are empty.');
+    return;
+  }
+  if (!safeTeam(q_t1) || !safeTeam(q_t2) || !safeTeam(e1_t1) || !safeTeam(e1_t2)) {
+    showBracketError('One or more qualifier teams are not recognised.');
+    return;
+  }
+
+  const locked      = isPlayoffLocked();
+  const timeLocked  = Date.now() >= PLAYOFF_LOCK_MS;
+
+  // Show a lock banner if time-locked but user hasn't submitted all picks yet
+  const lockBanner = (timeLocked && !alreadySubmitted)
+    ? `<div style="background:rgba(255,23,68,.1);border:1px solid var(--red);border-radius:8px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:22px;">🔒</span>
+        <div>
+          <div style="font-family:var(--font-cond);font-size:12px;font-weight:700;letter-spacing:2px;color:var(--red);text-transform:uppercase;">Predictions Locked</div>
+          <div style="font-size:13px;color:var(--text-dim);margin-top:3px;">The Qualifier has started — no more changes. ${picks.qualifier && picks.elim1 && picks.elim2 && picks.final ? 'Your picks are saved.' : 'Some picks were not submitted in time.'}</div>
+        </div>
+      </div>`
+    : '';
+
+  const qualWinner  = picks.qualifier || null;
+
+  // qualLoser MUST be from {q_t1, q_t2} and MUST differ from qualWinner
+  const qualLoser   = qualWinner === q_t1 ? q_t2
+                    : qualWinner === q_t2 ? q_t1
+                    : null;
+
+  const e1Winner    = picks.elim1 || null;
+
+  // ── Sanity: e1Winner must be one of {e1_t1, e1_t2} ──
+  // If it's stale (e.g. same as qualWinner or not in E1 teams), wipe it
+  const validE1Winner = e1Winner && (e1Winner === e1_t1 || e1Winner === e1_t2)
+    ? e1Winner : null;
+  if (e1Winner && !validE1Winner) {
+    delete picks.elim1;
+    delete picks.elim2;
+    delete picks.final;
+    renderBracket(); // re-render with cleaned picks
+    return;
+  }
+
+  const e2_t1 = qualLoser;
+  const e2_t2 = validE1Winner;
+
+  // ── Sanity: e2 teams must be different and non-null ──
+  if (e2_t1 && e2_t2 && e2_t1 === e2_t2) {
+    // Impossible state — wipe elim2 and final
+    delete picks.elim2;
+    delete picks.final;
+  }
+
+  const e2Winner = picks.elim2 || null;
+
+  // ── Sanity: e2Winner must be one of {e2_t1, e2_t2} ──
+  const validE2Winner = e2Winner && (e2Winner === e2_t1 || e2Winner === e2_t2)
+    ? e2Winner : null;
+  if (e2Winner && !validE2Winner) {
+    delete picks.elim2;
+    delete picks.final;
+  }
+
+  const f_t1 = qualWinner;
+  const f_t2 = validE2Winner;
+
+  // ── Sanity: final teams must differ ──
+  if (f_t1 && f_t2 && f_t1 === f_t2) {
+    delete picks.elim2;
+    delete picks.final;
+  }
+
+  container.innerHTML = lockBanner +
+    roundCard({ title:'QUALIFIER',    meta:'Apr 28 \u00b7 Karachi \u00b7 7:00 PM',
+      desc:'1st seed vs 2nd seed. <strong>Winner goes straight to the Final.</strong> Loser drops to Eliminator 2.',
+      key:'qualifier', teams:[q_t1,q_t2], locked, enabled:true }) +
+
+    '<div class="round-arrow">\u2193</div>' +
+
+    roundCard({ title:'ELIMINATOR 1', meta:'Apr 29 \u00b7 Lahore \u00b7 7:00 PM',
+      desc:'3rd seed vs 4th seed. <strong>Winner advances to Eliminator 2.</strong> Loser is eliminated.',
+      key:'elim1', teams:[e1_t1,e1_t2], locked, enabled:true }) +
+
+    '<div class="round-arrow">\u2193</div>' +
+
+    roundCard({ title:'ELIMINATOR 2', meta:'May 1 \u00b7 Lahore \u00b7 7:00 PM',
+      desc:'Qualifier loser vs Eliminator 1 winner. <strong>Winner advances to the Final.</strong>',
+      key:'elim2', teams:[e2_t1,e2_t2], locked,
+      enabled: !!(qualWinner && validE1Winner && e2_t1 && e2_t2 && e2_t1 !== e2_t2),
+      notReady: !(qualWinner && validE1Winner) }) +
+
+    '<div class="round-arrow">\u2193 \ud83c\udfc6</div>' +
+
+    roundCard({ title:'FINAL',        meta:'May 3 \u00b7 Lahore \u00b7 7:00 PM',
+      desc:'Qualifier winner vs Eliminator 2 winner. <strong>Who lifts the trophy?</strong>',
+      key:'final', teams:[f_t1,f_t2], locked,
+      enabled: !!(qualWinner && validE2Winner && f_t1 !== f_t2),
+      notReady: !(qualWinner && validE2Winner) });
+
+  renderSummary();
+  updateSubmitBtn();
+}
+
+/* ── Round card HTML ─────────────────── */
+function roundCard({ title, meta, desc, key, teams, locked, enabled, notReady }) {
+  const selected  = picks[key] || null;
+  const isDone    = !!selected;
+  const timeLocked = Date.now() >= PLAYOFF_LOCK_MS;
+  const statusHtml = isDone
+    ? (timeLocked && !alreadySubmitted
+        ? '<span class="round-card__status status-done">✓ Picked (Locked)</span>'
+        : '<span class="round-card__status status-done">✓ Picked</span>')
+    : locked
+      ? '<span class="round-card__status status-locked">🔒 Locked</span>'
+      : enabled
+        ? '<span class="round-card__status status-pending">Pick required</span>'
+        : '<span class="round-card__status status-locked">Pending</span>';
+
+  let teamsHtml = '';
+  if (!enabled || notReady) {
+    teamsHtml = '<p style="padding:16px 20px;color:var(--text-muted);font-style:italic;font-size:13px;">Waiting for previous round picks to determine teams…</p>';
+  } else {
+    teamsHtml = '<div class="matchup"><div class="matchup__label">Pick the winner</div><div class="team-options">';
+    (teams || []).forEach(t => {
+      if (!t) return;                  // null slot (upstream pick not made yet)
+      const team = safeTeam(t);
+      if (!team) return;               // unknown team key
+      const isSel  = selected === t;
+      const isElim = !!(selected && !isSel);
+      const cls    = [
+        'team-option',
+        isSel  ? 'selected'   : '',
+        isElim ? 'eliminated' : '',
+        locked ? 'locked-opt' : '',
+      ].filter(Boolean).join(' ');
+      const click  = locked ? '' : `onclick="pickPlayoff('${key}','${t}')"`;
+      teamsHtml += `
+        <div class="${cls}" ${click}>
+          ${teamAvatar(t, 32)}
+          <span class="team-option__name" style="color:${team.color}">${team.name}</span>
+          <div class="team-option__check"></div>
+        </div>`;
+    });
+    teamsHtml += '</div></div>';
+  }
+
+  return `
+  <div class="round-card ${isDone?'complete':''} ${!enabled?'locked':''}">
+    <div class="round-card__head">
+      <div>
+        <div class="round-card__title">${title}</div>
+        <div class="round-card__meta">${meta}</div>
+      </div>
+      ${statusHtml}
+    </div>
+    <div class="round-card__desc">${desc}</div>
+    ${teamsHtml}
+  </div>`;
+}
+
+/* ── Pick handler ────────────────────── */
+function pickPlayoff(key, team) {
+  if (isPlayoffLocked()) return;
+  if (!key || !team) return;
+  picks[key] = team;
+  // Always cascade-reset ALL downstream picks when any round changes
+  // This is the definitive fix for stale/duplicate team bugs
+  if (key === 'qualifier') {
+    delete picks.elim2;
+    delete picks.final;
+    // Note: elim1 is independent of qualifier, so DON'T delete it
+  }
+  if (key === 'elim1') {
+    delete picks.elim2;
+    delete picks.final;
+  }
+  if (key === 'elim2') {
+    delete picks.final;
+  }
+  renderBracket();
+}
+
+/* ── Summary sidebar ────────────────── */
+function renderSummary() {
+  const el = document.getElementById('summary-rows');
+  if (!el) return;
+  const rows = [
+    { label:'Qualifier Winner',     key:'qualifier' },
+    { label:'Elim 1 Winner',        key:'elim1' },
+    { label:'Elim 2 Winner',        key:'elim2' },
+    { label:'🏆 PSL 2026 Champion', key:'final' },
+  ];
+  el.innerHTML = rows.map(r => {
+    const t = picks[r.key] ? safeTeam(picks[r.key]) : null;
+    return `<div class="summary-row">
+      <span class="summary-row__label">${r.label}</span>
+      <span class="summary-row__value" style="${t?'color:'+t.color:''}">${t ? t.name : '—'}</span>
+    </div>`;
+  }).join('');
+}
+
+/* ── Submit button state ─────────────── */
+function updateSubmitBtn() {
+  const allDone = !!(picks.qualifier && picks.elim1 && picks.elim2 && picks.final);
+  const timeLocked = Date.now() >= PLAYOFF_LOCK_MS;
+  const btn  = document.getElementById('submit-btn');
+  const hint = document.getElementById('submit-hint');
+  if (!btn || !hint) return;
+  btn.disabled    = !allDone || alreadySubmitted || timeLocked;
+  if (alreadySubmitted) {
+    btn.textContent = 'Already Submitted ✓';
+    hint.textContent = 'Your predictions are saved. Check the Community page!';
+  } else if (timeLocked) {
+    btn.textContent = '🔒 Playoffs Have Started';
+    hint.textContent = 'Predictions are locked — the Qualifier has kicked off.';
+  } else if (allDone) {
+    btn.textContent = 'Submit Predictions →';
+    hint.textContent = "All rounds picked! Submit to see everyone else's predictions.";
+  } else {
+    btn.textContent = 'Submit Predictions →';
+    hint.textContent = 'Pick all playoff rounds to submit.';
+  }
+}
+
+/* ── Submit ──────────────────────────── */
+function submitPlayoffs() {
+  if (isPlayoffLocked()) {
+    alert('Playoff predictions are locked — the Qualifier has already started!'); return;
+  }
+  if (!picks.qualifier || !picks.elim1 || !picks.elim2 || !picks.final) {
+    alert('Please pick all playoff rounds first!'); return;
+  }
+  try {
+    savePlayoffPicks(username, picks);
+    alert('🏆 Predictions submitted! You can now see everyone\'s playoff picks.');
+    window.location.href = 'community.html';
+  } catch(e) {
+    alert('Error saving picks: ' + e.message + '\nPlease try again.');
+  }
+}
+
+/* ── Playoff seeding tiebreaker modal ── */
+function openPlayoffTiebreaker(is23) {
+  const container = document.getElementById('po-tb-options');
+  if (!container || qualifiers.length < 4) return;
+  const teams = is23
+    ? [qualifiers[1], qualifiers[2]]
+    : [qualifiers[2], qualifiers[3]];
+  container.innerHTML = teams.filter(Boolean).map(t => {
+    const team = safeTeam(t?.team);
+    if (!team) return '';
+    return `<button class="tb-option" onclick="pickPlayoffSeed('${t.team}')">
+      <span class="tb-option__dot" style="background:${team.color}"></span>
+      ${team.name}
+      <span class="tb-option__pts">${t.pts} pts</span>
+    </button>`;
+  }).join('');
+  const overlay = document.getElementById('po-tb-overlay');
+  if (overlay) overlay.style.display = 'flex';
+}
+
+function pickPlayoffSeed(team) {
+  if (!team) return;
+  try { savePlayoffSeedChoice(username, team); } catch(e) {}
+  const overlay = document.getElementById('po-tb-overlay');
+  if (overlay) overlay.style.display = 'none';
+  location.reload();
+}
+
+// Close tiebreaker modal on backdrop click
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('po-tb-overlay');
+  if (overlay) overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.style.display = 'none';
+  });
+});
+
+initPage();
+</script>
+</body>
+</html>
